@@ -1,0 +1,13 @@
+{% extends "bootstrap/base.html" %}
+{% block title %} Pagina Produtos {% endblock %}
+
+
+{% block content %}
+<h1>Lista de Produtos</h1>
+
+<ul>
+    {% for product in users %}
+    <li>{{product.id}} - {{product.descricao}} - {{user.peso}} </li>
+    {% endfor %}
+</ul>
+{% endblock %}
