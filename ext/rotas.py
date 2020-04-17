@@ -24,7 +24,7 @@ def init_app(app):
     @app.route("/users/add")
     def add_users():
         usuario = User.query.all()
-        return render_template("user.html", users=usuario)
+        return render_template("add_user.html", users=usuario)
 
     @app.route("/users/delete/<int:id>")
     def delete_user(id=0):
