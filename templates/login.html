@@ -1,0 +1,18 @@
+{% extends "bootstrap/base.html" %}
+{% block title %} Login {% endblock %}
+
+
+{% block content %}
+
+<h1>Login </h1>
+
+<form class="" action="{{ url_for("auth") }}" method="post">
+    <input type="text" name="login" placeholder="Login ">
+    <input type="password" name="password" placeholder="*** ">
+
+    <input type="submit" value="Login">
+    <input type="button" value="Cancelar">
+</form>
+
+<a href="{{ url_for("users") }}">Voltar </a>
+{% endblock %}
