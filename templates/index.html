@@ -3,7 +3,21 @@
 
 
 {% block content %}
-<h3><a href='/users'>Link para Usuários </a></h3>
-<h3><a href='/products'>Link para Produtos </a></h3>
+
+<nav>
+    {% if current_user.is_authenticated %}
+        <p style="font-size:240%; text-align:left">
+            <a href="{{ url_for("logout") }}">Logout </a>
+        </p>
+
+        <h3><a href='/users'>Link para Usuários </a></h3>
+        <h3><a href='/products'>Link para Produtos </a></h3>
+    {% else %}
+        <p style="font-size:340%; text-align:center"><a href="{{ url_for("login") }}">Login </a></p>
+    {% endif %}
+</nav>
+
+
+
 
 {% endblock %}
