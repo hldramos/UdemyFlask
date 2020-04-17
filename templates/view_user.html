@@ -1,0 +1,11 @@
+{% extends "bootstrap/base.html" %}
+{% block title %} Pagina Usuários {% endblock %}
+
+
+{% block content %}
+<h1><b>ID: </b>{{users.id}} </h1> <a href="{{ url_for('delete_user', id=users.id) }}">Deletar </a>
+
+<h3><b>Nome: </b>{{users.name}} </h3>
+<h3><b>Email: </b>{{users.email}} </h3>
+<a href="{{ url_for('users') }}">Voltar </a>
+{% endblock %}
