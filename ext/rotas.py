@@ -5,8 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from ext.database import db
 
-from forms.form_users import FormUser
-from forms.form_login import FormLogin
+from forms.forms import FormUser, FormLogin
 
 from models.users import User
 from models.products import Product
