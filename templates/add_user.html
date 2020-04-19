@@ -1,14 +1,14 @@
 {% extends "bootstrap/base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-
 {% block title %} Adiciona Usuário {% endblock %}
 
 
 {% block content %}
+{% include "notificacions/notificacao.html" %}
 
 <h1>Cadastro de Usuário </h1>
 <div class="form-group">
-    {{ wtf.quick_form(form, method="POST", action=url_for("register"), form_type="inline" ) }}
+    {{ wtf.quick_form(form, method="POST", action=url_for("register"), form_type="basic" ) }}
 </div>
 
 <a href="{{ url_for("users") }}">Voltar </a>

@@ -5,7 +5,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from ext.database import db
 
-from forms.form_users import Form_user
+from forms.form_users import FormUser
+from forms.form_login import FormLogin
 
 from models.users import User
 from models.products import Product
@@ -35,7 +36,7 @@ def init_app(app):
     @app.route("/users/add/")
     @login_required
     def add_users():
-        form = Form_user()
+        form = FormUser()
 
         return render_template("add_user.html", form=form)
 
@@ -57,9 +58,9 @@ def init_app(app):
     @app.route("/register/", methods=["POST"])
     @login_required
     def register():
-        form = Form_user()
+        form = FormUser()
 
-        if request.method == "POST":
+        if form.validate_on_submit():
             user = User()
 
             user.name = form.name.data
@@ -74,7 +75,7 @@ def init_app(app):
 
     @app.route("/login/", methods=["POST", "GET"])
     def login():
-        form = Form_user()
+        form = FormLogin()
 
         return render_template("login.html", form=form)
 
@@ -87,18 +88,22 @@ def init_app(app):
 
     @app.route("/auth/", methods=["POST", "GET"])
     def auth():
-        if request.method == "POST":
-            login = request.form["login"]
-            password = request.form["password"]
+        form = FormLogin()
 
+        if form.validate_on_submit():
+            form = FormLogin()
+            login = form.login.data
+            password = form.password.data
             user = User.query.filter_by(login=login).first()
 
             if not user:
-                # flash("Credenciais inválidas!", category="error")
+                flash(message="Credenciais inválidas!!", category="danger")
+
                 return redirect(url_for("login"))
 
             if not check_password_hash(user.password, password):
-                # flash("Credenciais inválidas!", category="error")
+                flash("Credenciais inválidas!", "error")
+
                 return redirect(url_for("login"))
 
             login_user(user)
