@@ -4,9 +4,9 @@
 
 {% block content %}
 <h1>Lista de Usuários</h1>
-<ul>
+<ul class="list-group list-group-flush mb-2">
     {% for user in users %}
-    <h3><li> <a href="{{ url_for('view_users', id=user.id) }}">{{ user.name }}</a></li></h3>
+    <h3><li class="list-group-item"> <a href="{{ url_for('view_users', id=user.id) }}">{{ user.name }}</a></li></h3>
     {% endfor %}
 </ul>
 <nav>
