@@ -71,7 +71,9 @@ def init_app(app):
             db.session.add(user)
             db.session.commit()
 
-        return redirect("/users")
+            return redirect("/users")
+
+        return render_template("add_user.html", form=form)
 
     @app.route("/login/", methods=["POST", "GET"])
     def login():
@@ -97,15 +99,17 @@ def init_app(app):
             user = User.query.filter_by(login=login).first()
 
             if not user:
-                flash(message="Credenciais inválidas!!", category="danger")
+                flash("Credenciais inválidas!", "danger")
 
                 return redirect(url_for("login"))
 
             if not check_password_hash(user.password, password):
-                flash("Credenciais inválidas!", "error")
-
+                flash("Credenciais inválidas!", "danger")
+                # flash(form.errors, "waring")
                 return redirect(url_for("login"))
 
             login_user(user)
 
             return redirect(url_for("index"))
+
+        return render_template("login.html", form=form)
