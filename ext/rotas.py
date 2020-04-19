@@ -7,8 +7,7 @@ from ext.database import db
 
 from forms.forms import FormUser, FormLogin
 
-from models.users import User
-from models.products import Product
+from models.models import User, Product
 
 
 def init_app(app):

@@ -1,6 +1,6 @@
 from flask_login import LoginManager
 
-from models.users import User
+from models.models import User
 
 
 def init_app(app):

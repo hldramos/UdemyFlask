@@ -2,10 +2,9 @@ from flask import Flask
 
 from ext import rotas, webui, database, configuracao, comandos, admin, login
 
-from models.users import User
-from models.products import Product
+from models.models import User, Product
 
-from forms import form_users
+from forms import forms
 
 
 def create_app():
